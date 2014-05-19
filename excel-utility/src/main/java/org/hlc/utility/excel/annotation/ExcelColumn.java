@@ -32,9 +32,9 @@ import org.hlc.utility.common.TypeHandler;
 @Target(ElementType.FIELD)
 public @interface ExcelColumn {
 
-	public String name();
+	public String value();
 
-	public int width();
+	public int width() default 20;
 
 	@SuppressWarnings("rawtypes")
 	public Class<? extends TypeHandler> converter() default TypeHandler.class;

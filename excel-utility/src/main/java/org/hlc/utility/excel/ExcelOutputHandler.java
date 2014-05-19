@@ -39,8 +39,6 @@ import org.hlc.utility.common.TypeHandlerFactory;
 import org.hlc.utility.excel.annotation.Excel;
 import org.hlc.utility.excel.annotation.ExcelColumn;
 
-import com.google.common.collect.Lists;
-
 /**
  * 输出Excel.
  *
@@ -64,7 +62,7 @@ public class ExcelOutputHandler {
 			throw new ExcelException("The Class <" + type + "> did not Excel");
 		}
 		if (dataSet == null || dataSet.size() == 0) {
-			dataSet = Lists.newArrayList();
+			dataSet = new ArrayList();
 		}
 		String title = excelAnn.value();
 		if (StringUtils.isEmpty(title)) {
@@ -83,7 +81,7 @@ public class ExcelOutputHandler {
 				Field field = fileds[i];
 				ExcelColumn column = field.getAnnotation(ExcelColumn.class);
 				if (column != null) {
-					exportFieldTitle.add(column.name());
+					exportFieldTitle.add(column.value());
 					exportFieldWidth.add(column.width());
 					Method getMethod = ReflectionUtils.getValueMethod(field, type);
 					methodObj.add(getMethod);

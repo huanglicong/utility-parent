@@ -18,12 +18,11 @@ package org.hlc.utility.excel;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
-
-import com.google.common.collect.Lists;
 
 /**
  * The Class TestExcelUtils.
@@ -44,7 +43,7 @@ public class TestExcelUtils {
 		String filename = "/Users/huanglicong/Desktop/test.xls";
 		FileInputStream in = new FileInputStream(filename);
 
-		List<Person> list = Lists.newArrayList();
+		List<Person> list = new ArrayList<Person>();
 		if (filename.contains(".xlsx")) {
 			list = ExcelUtil.getInstance().importExcel2007(Person.class, in);
 		} else {
@@ -67,7 +66,7 @@ public class TestExcelUtils {
 	public void testExportExcel() throws IOException {
 
 		Date now = new Date();
-		List<Person> list = Lists.newArrayList();
+		List<Person> list = new ArrayList<Person>();
 		for (int i = 1; i <= 20; i++) {
 			list.add(new Person(510000200 + i, "张三" + i, "男", 20 + i, now));
 		}

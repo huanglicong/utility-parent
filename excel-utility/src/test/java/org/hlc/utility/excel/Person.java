@@ -10,22 +10,22 @@ import org.hlc.utility.excel.annotation.ExcelColumn;
 @Excel("人员")
 public class Person {
 
-	@ExcelColumn(name = "编号", width = 20)
+	@ExcelColumn("编号")
 	private long no;
-	@ExcelColumn(name = "姓名", width = 20)
+	@ExcelColumn("姓名")
 	private String name;
-	@ExcelColumn(name = "性别", width = 20)
+	@ExcelColumn("性别")
 	private String sex;
-	@ExcelColumn(name = "年龄", width = 20)
+	@ExcelColumn("年龄")
 	private int age;
-	@ExcelColumn(name = "生日", width = 20, converter = DateTypeHandler.class)
+	@ExcelColumn(value = "生日", converter = DateTypeHandler.class)
 	private Date birthday;
 
-	@ExcelColumn(name = "X1", width = 20)
+	@ExcelColumn("X1")
 	private byte x1 = 1;
-	@ExcelColumn(name = "X2", width = 20)
+	@ExcelColumn("X2")
 	private short x2 = 2;
-	@ExcelColumn(name = "X3", width = 20)
+	@ExcelColumn("X3")
 	private BigDecimal x3 = new BigDecimal(2000.00);
 
 	public Person() {

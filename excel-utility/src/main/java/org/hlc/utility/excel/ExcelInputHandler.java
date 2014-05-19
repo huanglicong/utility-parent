@@ -20,6 +20,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,11 +40,8 @@ import org.hlc.utility.common.TypeHandlerFactory;
 import org.hlc.utility.excel.annotation.Excel;
 import org.hlc.utility.excel.annotation.ExcelColumn;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
 /**
- * TODO.
+ * 导入Excel并转换为数据对象列表.
  *
  * @author huanglicong
  * @version V1.0
@@ -68,7 +66,7 @@ public class ExcelInputHandler {
 
 		List<T> list = new ArrayList<T>();
 
-		Map<String, Method> mapping = Maps.newLinkedHashMap();
+		Map<String, Method> mapping = new LinkedHashMap<String, Method>();
 		Map<String, TypeHandler> converters = new HashMap<String, TypeHandler>();
 
 		try {
@@ -79,7 +77,7 @@ public class ExcelInputHandler {
 				ExcelColumn column = field.getAnnotation(ExcelColumn.class);
 				if (column != null) {
 					Method setMethod = ReflectionUtils.setValueMethod(field, type);
-					mapping.put(column.name(), setMethod);
+					mapping.put(column.value(), setMethod);
 					if (column.converter() != TypeHandler.class) {
 						converters.put(setMethod.getName().toString(), column.converter().newInstance());
 					} else {
@@ -97,7 +95,7 @@ public class ExcelInputHandler {
 				}
 
 				// 解析Sheet
-				List<Method> methods = Lists.newArrayList();
+				List<Method> methods = new ArrayList<Method>();
 				for (int rowNum = 0; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
 
 					HSSFRow hssfRow = hssfSheet.getRow(rowNum);
@@ -168,7 +166,7 @@ public class ExcelInputHandler {
 
 		List<T> list = new ArrayList<T>();
 
-		Map<String, Method> mapping = Maps.newLinkedHashMap();
+		Map<String, Method> mapping = new LinkedHashMap<String, Method>();
 		Map<String, TypeHandler> converters = new HashMap<String, TypeHandler>();
 
 		try {
@@ -179,7 +177,7 @@ public class ExcelInputHandler {
 				ExcelColumn column = field.getAnnotation(ExcelColumn.class);
 				if (column != null) {
 					Method setMethod = ReflectionUtils.setValueMethod(field, type);
-					mapping.put(column.name(), setMethod);
+					mapping.put(column.value(), setMethod);
 					if (column.converter() != TypeHandler.class) {
 						converters.put(setMethod.getName().toString(), column.converter().newInstance());
 					} else {
@@ -197,7 +195,7 @@ public class ExcelInputHandler {
 				}
 
 				// 解析Sheet
-				List<Method> methods = Lists.newArrayList();
+				List<Method> methods = new ArrayList<Method>();
 				for (int rowNum = 0; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
 
 					XSSFRow hssfRow = hssfSheet.getRow(rowNum);
