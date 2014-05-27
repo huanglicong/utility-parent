@@ -42,12 +42,14 @@ public class TypeHandlerFactory {
 		typeRegistered.put(Short.class.getName(), new ShortTypeHandler());
 		typeRegistered.put(Integer.class.getName(), new IntegerTypeHandler());
 		typeRegistered.put(Long.class.getName(), new LongTypeHandler());
+		typeRegistered.put(Double.class.getName(), new DoubleTypeHandler());
 		typeRegistered.put(BigDecimal.class.getName(), new BigDecimalTypeHandler());
 
 		typeRegistered.put(byte.class.getName(), new ByteTypeHandler());
 		typeRegistered.put(short.class.getName(), new ShortTypeHandler());
 		typeRegistered.put(int.class.getName(), new IntegerTypeHandler());
 		typeRegistered.put(long.class.getName(), new LongTypeHandler());
+		typeRegistered.put(double.class.getName(), new DoubleTypeHandler());
 	}
 
 	/**
